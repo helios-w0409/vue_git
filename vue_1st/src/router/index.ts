@@ -1,0 +1,42 @@
+//创建 一个路由器并暴露出去
+
+//导入
+import { createRouter, createWebHashHistory } from "vue-router"; //和常规的不一样 需要注意
+//导入需要跳转的组件
+import Home from "@/pages/Home.vue";
+import About from "@/pages/About.vue";
+import News from "@/pages/News.vue";
+import Detail from "@/pages/Detail.vue";
+//创建一个路由器
+const router = createRouter({
+  //创建一个history对象
+  history: createWebHashHistory(),
+  //配置路由
+  routes: [
+    {
+      name: "shouye",
+      path: "/home",
+      component: Home,
+    },
+    {
+      name: "guanyu",
+      path: "/about",
+      component: About,
+    },
+    {
+      name: "xinwen",
+      path: "/news",
+      component: News,
+      children: [
+        {
+          // name: "xijie",
+          path: "detail",
+          component: Detail,
+        },
+      ],
+    },
+  ],
+});
+
+//导出路由
+export default router;
