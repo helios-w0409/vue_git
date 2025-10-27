@@ -4,7 +4,20 @@
     <div class="list">
       <ul>
         <li v-for="value in news" :key="value.id">
-          <router-link to="/news/detail">{{ value.title }}</router-link>
+          <!-- 写法一 -->
+          <!-- <router-link :to="`/news/detail/${value.id}/${value.title}/${value.content}`">{{ value.title }}</router-link> -->
+           <!-- 写法二 -->
+            <router-link :to="{
+              name:'xijie',
+              // 名字一定要写成单引号的。不然会报错
+              params:{
+                id:value.id,
+                title:value.title,
+                content:value.content
+              }
+            }
+            ">{{ value.title }}</router-link>
+            <!-- 实现按钮跳转新闻信息的功能 -->
         </li>
       </ul>
     </div>
@@ -19,9 +32,9 @@
 import { ref } from "vue";
 import { RouterView, RouterLink } from "vue-router";
 const news = ref([
-  { id: 1, title: "新闻1" },
-  { id: 2, title: "新闻2" },
-  { id: 3, title: "新闻3" },
+  { id: 1, title: "新闻1" ,content:"内容1"},
+  { id: 2, title: "新闻2" ,content:"内容2"},
+  { id: 3, title: "新闻3" ,content:"内容3"},
 ]);
 </script>
 

@@ -29,9 +29,15 @@ const router = createRouter({
       component: News,
       children: [
         {
-          // name: "xijie",
-          path: "detail",
+          name: "xijie",
+          path: "detail/:id/:title/:content?",
           component: Detail,
+          // 直接用 针对于prarms参数
+          props:true
+          //函数写法 适合query参数
+          // props(route){
+          //   return route.query;  
+          // }
         },
       ],
     },
